@@ -4,7 +4,7 @@
    ```
    git clone https://github.com/UMDGeoVis/Terrain_Trees.git
    ```
-### 2. Uncompress the file
+### 2. Uncompress the file (not necessary)
    ```
    tar -xvzf filename.tar.gz
    ```
@@ -66,4 +66,17 @@
      # find_package(Boost REQUIRED)
      #~ find_package(Doxygen REQUIRED)
      ```
-     
+
+### 6. Load basic modules
+   ```
+   module load boost/1.84.0
+   module load qt/5.8.0
+   module load gcc/8.3.1
+   module load cgal/4.9
+   ```
+   Do not load cmake/3.10.2, instead, use cmake-3.26.0
+   Before running cmake, export the following to the path:
+   1) "export LD_LIBRARY_PATH=/apps/python/3.6/anaconda/lib:$LD_LIBRARY_PATH"
+   2) "hash -r"
+   3) test with "gcc -x c - -o /tmp/a.out <<< 'int main(){return 0;}'
+/tmp/a.out". If no errors, run "/gpfs/data1/cgis1gp/yuehui/cmake-3.26.0/bin/cmake CMakeLists.txt"
