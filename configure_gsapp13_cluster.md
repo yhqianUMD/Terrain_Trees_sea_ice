@@ -71,12 +71,36 @@
    ```
    module load boost/1.84.0
    module load qt/5.8.0
-   module load gcc/8.3.1
+   module load gcc/12.3.0
    module load cgal/4.9
    ```
    Do not load cmake/3.10.2, instead, use cmake-3.26.0
    Before running cmake, export the following to the path:
-   1) "export LD_LIBRARY_PATH=/apps/python/3.6/anaconda/lib:$LD_LIBRARY_PATH"
-   2) "hash -r"
-   3) test with "gcc -x c - -o /tmp/a.out <<< 'int main(){return 0;}'
-/tmp/a.out". If no errors, run "/gpfs/data1/cgis1gp/yuehui/cmake-3.26.0/bin/cmake CMakeLists.txt"
+   ```
+   export LD_LIBRARY_PATH=/apps/python/3.6/anaconda/pkgs/mpfr-3.1.5-h11a74b3_2/lib:$LD_LIBRARY_PATH
+   ```
+   The following is good to run, but maybe not necessary:
+   ```
+   export LD_LIBRARY_PATH=/apps/gcc/12.3.0/lib64:/apps/gcc/12.3.0/lib:$LD_LIBRARY_PATH
+   ```
+### 7. Run cmake and make, but with the following modern commands.
+   (1) Create a "build" directory and run "cmake CMakeLists.txt"
+      ```
+      rm -rf build
+      /gpfs/data1/cgis1gp/yuehui/cmake-3.26.0/bin/cmake -S . -B build \
+        -DCMAKE_C_COMPILER=/apps/gcc/12.3.0/bin/gcc \
+        -DCMAKE_CXX_COMPILER=/apps/gcc/12.3.0/bin/g++
+      ```
+   (2) Run "make", which is the "build"
+      ```
+      /gpfs/data1/cgis1gp/yuehui/cmake-3.26.0/bin/cmake --build build -j
+      ```
+   (3) Run "make sea_ice"
+      ```
+      /gpfs/data1/cgis1gp/yuehui/cmake-3.26.0/bin/cmake --build build --target sea_ice -j
+      ```
+### 8. Compute ice ridges
+   ```
+   ./build/bin/test_ridge_extraction  /gpfs/data1/cgis1gp/yuehui/data/Part3_TopoSim/Terrain_trees_seaice_test/ALS_LIB_20190410T174554_181213_small_crop_tiny_test_as_100000.off 20 0.5 -0.31 0 -r 0.08
+   ```
+
