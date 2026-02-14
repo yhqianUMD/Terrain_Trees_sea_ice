@@ -104,3 +104,8 @@
    ./build/bin/test_ridge_extraction  /gpfs/data1/cgis1gp/yuehui/data/Part3_TopoSim/Terrain_trees_seaice_test/ALS_LIB_20190410T174554_181213_small_crop_tiny_test_as_100000.off 20 0.5 -0.31 0 -r 0.08
    ```
 
+### 9. Interpolate ICESat-2 points in a TIN
+   ```
+   ./test_point_interpolation /gpfs/data1/cgis1gp/yuehui/data/Part3_TopoSim/ALS_L1B_20190410T174554_181213_3/ALS_L1B_20190410T174554_181213_3_as_100000.off 20 -0.31 /gpfs/data1/cgis1gp/yuehui/data/Part3_TopoSim/UMD_data/strong_beam/UMDRDA_ATL03_20190410152144_01890303_007_01_gt2l_DTU21_Elevation_epsg3413_drift_xy_02132026_quater_600_crop.txt
+   ```
+
